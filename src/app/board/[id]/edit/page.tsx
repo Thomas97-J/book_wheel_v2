@@ -34,7 +34,7 @@ export default function EditPage() {
   }
 
   return (
-    <div className="container py-10">
+    <div className="container mx-auto py-10">
       <h1 className="text-3xl font-serif font-bold mb-8 text-center">
         글 수정
       </h1>

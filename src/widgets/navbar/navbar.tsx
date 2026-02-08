@@ -7,7 +7,7 @@ import { cn } from "@/shared/lib/utils";
 export function Navbar() {
   return (
     <nav className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-14 items-center">
+      <div className="container mx-auto flex h-14 items-center">
         <Link href="/" className="mr-6 flex items-center space-x-2">
           <span className="hidden font-serif font-bold sm:inline-block text-xl">
             책바퀴

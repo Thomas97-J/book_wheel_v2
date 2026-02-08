@@ -27,8 +27,9 @@ export function Toolbar({ editor }: ToolbarProps) {
   }
 
   return (
-    <div className="border-b bg-muted/50 p-2 flex flex-wrap gap-1 sticky top-14 z-40">
+    <div className="border-b bg-muted p-2 flex flex-wrap gap-1 top-14 z-40">
       <Button
+        type="button"
         variant="ghost"
         size="icon"
         onClick={() => editor.chain().focus().toggleBold().run()}
@@ -38,6 +39,7 @@ export function Toolbar({ editor }: ToolbarProps) {
         <Bold className="h-4 w-4" />
       </Button>
       <Button
+        type="button"
         variant="ghost"
         size="icon"
         onClick={() => editor.chain().focus().toggleItalic().run()}
@@ -47,6 +49,7 @@ export function Toolbar({ editor }: ToolbarProps) {
         <Italic className="h-4 w-4" />
       </Button>
       <Button
+        type="button"
         variant="ghost"
         size="icon"
         onClick={() => editor.chain().focus().toggleStrike().run()}
@@ -57,6 +60,7 @@ export function Toolbar({ editor }: ToolbarProps) {
       </Button>
       <div className="w-px h-6 bg-border mx-1 self-center" />
       <Button
+        type="button"
         variant="ghost"
         size="icon"
         onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
@@ -67,6 +71,7 @@ export function Toolbar({ editor }: ToolbarProps) {
         <Heading1 className="h-4 w-4" />
       </Button>
       <Button
+        type="button"
         variant="ghost"
         size="icon"
         onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
@@ -77,6 +82,7 @@ export function Toolbar({ editor }: ToolbarProps) {
         <Heading2 className="h-4 w-4" />
       </Button>
       <Button
+        type="button"
         variant="ghost"
         size="icon"
         onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
@@ -88,6 +94,7 @@ export function Toolbar({ editor }: ToolbarProps) {
       </Button>
       <div className="w-px h-6 bg-border mx-1 self-center" />
       <Button
+        type="button"
         variant="ghost"
         size="icon"
         onClick={() => editor.chain().focus().toggleBulletList().run()}
@@ -96,6 +103,7 @@ export function Toolbar({ editor }: ToolbarProps) {
         <List className="h-4 w-4" />
       </Button>
       <Button
+        type="button"
         variant="ghost"
         size="icon"
         onClick={() => editor.chain().focus().toggleOrderedList().run()}
@@ -105,6 +113,7 @@ export function Toolbar({ editor }: ToolbarProps) {
       </Button>
       <div className="w-px h-6 bg-border mx-1 self-center" />
       <Button
+        type="button"
         variant="ghost"
         size="icon"
         onClick={() => editor.chain().focus().toggleBlockquote().run()}
@@ -113,6 +122,7 @@ export function Toolbar({ editor }: ToolbarProps) {
         <Quote className="h-4 w-4" />
       </Button>
       <Button
+        type="button"
         variant="ghost"
         size="icon"
         onClick={() => editor.chain().focus().toggleCode().run()}
@@ -122,6 +132,7 @@ export function Toolbar({ editor }: ToolbarProps) {
       </Button>
       <div className="w-px h-6 bg-border mx-1 self-center" />
       <Button
+        type="button"
         variant="ghost"
         size="icon"
         onClick={() => editor.chain().focus().undo().run()}
@@ -130,6 +141,7 @@ export function Toolbar({ editor }: ToolbarProps) {
         <Undo className="h-4 w-4" />
       </Button>
       <Button
+        type="button"
         variant="ghost"
         size="icon"
         onClick={() => editor.chain().focus().redo().run()}
