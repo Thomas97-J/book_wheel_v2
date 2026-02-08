@@ -22,6 +22,9 @@ const notoSansKr = Noto_Sans_KR({
 export const metadata: Metadata = {
   title: "책바퀴 (Book Wheel)",
   description: "Next.js 게시판 프로젝트",
+  icons: {
+    icon: "/logo_favicon.svg",
+  },
 };
 
 export default function RootLayout({
