@@ -7,7 +7,8 @@ import { useAuth } from "@/features/auth";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Trash2, Edit } from "lucide-react";
+import { ArrowLeft, Trash2, Edit, Eye } from "lucide-react";
+import { CommentSection } from "./comment-section";
 
 interface PostDetailProps {
   post: Post;
@@ -57,6 +58,10 @@ export function PostDetail({ post }: PostDetailProps) {
                 ? format(post.createdAt.toDate(), "yyyy.MM.dd HH:mm")
                 : ""}
             </span>
+            <span className="flex items-center gap-1">
+              <Eye className="h-4 w-4" />
+              {post.viewCount || 0}
+            </span>
           </div>
           {isAuthor && (
             <div className="flex gap-2">
@@ -85,6 +90,8 @@ export function PostDetail({ post }: PostDetailProps) {
         className="prose prose-lg dark:prose-invert max-w-none min-h-[300px]"
         dangerouslySetInnerHTML={{ __html: post.content }}
       />
+
+      <CommentSection postId={post.id} />
     </article>
   );
 }

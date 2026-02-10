@@ -1,17 +1,23 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useParams } from "next/navigation";
-import { getPost, Post } from "@/entities/post";
+import { getPost, incrementViewCount, Post } from "@/entities/post";
 import { PostDetail } from "@/widgets/post-detail";
 
 export default function PostPage() {
   const { id } = useParams() as { id: string };
   const [post, setPost] = useState<Post | null>(null);
   const [loading, setLoading] = useState(true);
+  const ignore = useRef(false);
 
   useEffect(() => {
     if (id) {
+      if (!ignore.current) {
+        ignore.current = true;
+        incrementViewCount(id);
+      }
+
       getPost(id)
         .then(setPost)
         .finally(() => setLoading(false));

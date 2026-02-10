@@ -10,6 +10,7 @@ import {
   orderBy,
   Timestamp,
   serverTimestamp,
+  increment,
 } from "firebase/firestore";
 import { db } from "@/shared/config/firebase";
 import { Post } from "../model/types";
@@ -33,7 +34,10 @@ export const getPost = async (id: string): Promise<Post | null> => {
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
-    return { id: docSnap.id, ...docSnap.data() } as Post;
+    return {
+      id: docSnap.id,
+      ...docSnap.data(),
+    } as Post;
   } else {
     return null;
   }
@@ -64,4 +68,11 @@ export const updatePost = async (
 export const deletePost = async (id: string): Promise<void> => {
   const docRef = doc(db, COLLECTION_NAME, id);
   await deleteDoc(docRef);
+};
+
+export const incrementViewCount = async (id: string): Promise<void> => {
+  const docRef = doc(db, COLLECTION_NAME, id);
+  await updateDoc(docRef, {
+    viewCount: increment(1),
+  });
 };

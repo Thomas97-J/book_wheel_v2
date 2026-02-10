@@ -8,4 +8,5 @@ export interface Post {
   authorName: string;
   createdAt: Timestamp;
   updatedAt: Timestamp;
+  viewCount?: number;
 }
