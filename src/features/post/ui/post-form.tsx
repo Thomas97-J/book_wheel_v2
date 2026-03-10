@@ -7,6 +7,7 @@ import { TiptapEditor } from "@/features/editor";
 import { createPost, updatePost, Post } from "@/entities/post";
 import { useAuth } from "@/features/auth";
 import { Loader2 } from "lucide-react";
+import { useLocalStorage } from "@/shared/lib/hooks/use-local-storage";
 
 interface PostFormProps {
   initialData?: Post;
@@ -16,8 +17,23 @@ interface PostFormProps {
 export function PostForm({ initialData, isEditing = false }: PostFormProps) {
   const router = useRouter();
   const { user } = useAuth();
-  const [title, setTitle] = useState(initialData?.title || "");
-  const [content, setContent] = useState(initialData?.content || "");
+  const draftTitleKey =
+    isEditing && initialData
+      ? `post-draft-title-${initialData.id}`
+      : "post-draft-title-new";
+  const draftContentKey =
+    isEditing && initialData
+      ? `post-draft-content-${initialData.id}`
+      : "post-draft-content-new";
+
+  const [title, setTitle, removeTitle] = useLocalStorage(
+    draftTitleKey,
+    initialData?.title || "",
+  );
+  const [content, setContent, removeContent] = useLocalStorage(
+    draftContentKey,
+    initialData?.content || "",
+  );
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -32,6 +48,8 @@ export function PostForm({ initialData, isEditing = false }: PostFormProps) {
           title,
           content,
         });
+        removeTitle();
+        removeContent();
         router.push(`/board/${initialData.id}`);
       } else {
         const id = await createPost({
@@ -40,6 +58,8 @@ export function PostForm({ initialData, isEditing = false }: PostFormProps) {
           authorId: user.uid,
           authorName: user.displayName || "Anonymous",
         });
+        removeTitle();
+        removeContent();
         router.push(`/board/${id}`);
       }
       router.refresh();
@@ -67,7 +87,7 @@ export function PostForm({ initialData, isEditing = false }: PostFormProps) {
         />
       </div>
 
-      <div className="min-h-[400px]">
+      <div className="min-h-100">
         <TiptapEditor content={content} onChange={setContent} />
       </div>
 
