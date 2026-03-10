@@ -33,7 +33,7 @@ export default function PostPage() {
   }
 
   return (
-    <div className="container mx-auto py-10">
+    <div className="container mx-auto px-4 py-10">
       <PostDetail post={post} />
     </div>
   );

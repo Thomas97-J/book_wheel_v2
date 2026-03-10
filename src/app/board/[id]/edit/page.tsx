@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { getPost, Post } from "@/entities/post";
 import { PostForm } from "@/features/post";
 import { useAuth } from "@/features/auth";
@@ -9,7 +9,6 @@ import { useAuth } from "@/features/auth";
 export default function EditPage() {
   const { id } = useParams() as { id: string };
   const { user, loading: authLoading } = useAuth();
-  const router = useRouter();
   const [post, setPost] = useState<Post | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -34,7 +33,7 @@ export default function EditPage() {
   }
 
   return (
-    <div className="container mx-auto py-10">
+    <div className="container mx-auto px-4 py-10">
       <h1 className="text-3xl font-serif font-bold mb-8 text-center">
         글 수정
       </h1>
